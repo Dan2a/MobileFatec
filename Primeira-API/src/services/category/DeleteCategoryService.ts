@@ -1,11 +1,17 @@
-class DeleteCategoryService {
-    async execute(id: any) {
-        console.log(id);
-        var msg = {
-            message: "Registro excluido com sucesso",
-        };
+import { getCustomRepository } from "typeorm";
+import { CategoryRepository } from "../../repository/CategoryRepository";
 
-        return msg;
+class DeleteCategoryService {
+    async execute(id: string) {
+        const categoryRepository = getCustomRepository(CategoryRepository);
+        const category = await categoryRepository.findOne(id);
+
+        if (!category) {
+            throw new Error("Categoria não encontrada");
+        }
+
+        await categoryRepository.delete(id);
+        return { message: "Registro excluido com sucesso" };
     }
 }
 

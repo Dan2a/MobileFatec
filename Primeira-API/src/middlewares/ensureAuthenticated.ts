@@ -15,7 +15,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
     let t = String(token);
 
     try {
-        const { sub } = verify(t, "1234") as IPayload;
+        const { sub } = verify(t, "123456") as IPayload;
 
         return next();
     } catch (err) {

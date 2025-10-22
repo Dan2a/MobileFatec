@@ -8,8 +8,6 @@ export class DeleteSalesController {
 
         const resp = await deleteSaleService.execute(id);
 
-        console.log({ message: resp });
-
-        response.json({ message: `Venda com ID ${id} deletada com sucesso` });
+        return response.json(resp);
     }
 }

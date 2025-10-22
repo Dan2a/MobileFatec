@@ -5,11 +5,13 @@ export class DeleteUserService {
     async execute(id: any) {
         const usersRepostories = getCustomRepository(UsersRepostories);
 
-        const userAlreadyExists = usersRepostories.findOne(id);
+        const userAlreadyExists = await usersRepostories.findOne(id);
 
         if (!userAlreadyExists) {
-            throw new Error("User not exists");
+            throw new Error("Usuário não encontrado.");
         }
-        return await usersRepostories.delete(id);
+        await usersRepostories.delete(id);
+    
+        return { message: "Usuário deletado com sucesso." };
     }
 }

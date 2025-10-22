@@ -4,12 +4,14 @@ import { CreateSaleService } from "../../services/sale/CreateSaleService";
 export class CreateSalesController {
     async handle(request: Request, response: Response) {
         const createSaleService = new CreateSaleService();
-
         const { value, discount, productId, clientId } = request.body;
-        const sale = { value, discount, productId, clientId };
 
-        const resp = await createSaleService.execute(sale);
+        const sale = await createSaleService.execute({ 
+            value, discount, 
+            productId: String(productId), 
+            clientId: String(clientId) 
+        });
 
-        response.json({ message: "Venda registrada com Sucesso", data: resp });
+        return response.status(201).json(sale);
     }
 }

@@ -4,5 +4,5 @@ export interface IProductRequest {
     EAN: string;
     price: number;
     description: string;
-    categoryId: number;
+    categoryId: string;
 }
