@@ -1,19 +1,23 @@
 ## Comando
 
-Da permissão para o NPM instalar o yarn
+### Da permissão para o NPM instalar o yarn
 ```bash
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
-Instala o YARN
+### Instala o YARN
 ```bash
 npm install --global yarn
 ```
-Instala pacotes
+### Instala pacotes
 ```bash
 yarn
 ```
-
-Criar as Migration
+### Criar as Migration
 ```bash
 yarn typeorm migration:generate -n CreateAppEntities
+```
+
+### Rodar para criar tabelas no banco
+```bash
+yarn typeorm migration:run
 ```
