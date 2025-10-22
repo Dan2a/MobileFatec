@@ -4,10 +4,11 @@ import { DeleteCategoryService } from "../../services/category/DeleteCategorySer
 class DeleteCategoryController {
     async handle(request: Request, response: Response) {
         const deleteCategoryService = new DeleteCategoryService();
-        const id = request.params;
+        const { id } = request.params;
 
-        deleteCategoryService.execute(id);
-        response.json({ message: `Registro ${id} excluído com Sucesso` });
+        const result = await deleteCategoryService.execute(id);
+        
+        return response.json(result);
     }
 }
 export { DeleteCategoryController };

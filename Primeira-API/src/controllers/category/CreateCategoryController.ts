@@ -6,14 +6,9 @@ class CreateCategoryController {
         const createCategoryService = new CreateCategoryService();
         const { name, description } = request.body;
 
-        const category = {
-            name: name,
-            description: description,
-        };
+        const category = await createCategoryService.execute({ name, description });
 
-        createCategoryService.execute(category);
-
-        response.json({ message: "Registro incluido com Sucesso" });
+        return response.status(201).json(category);
     }
 }
 export { CreateCategoryController };
