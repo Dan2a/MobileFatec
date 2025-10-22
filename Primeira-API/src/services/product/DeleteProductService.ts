@@ -1,9 +1,16 @@
-export class DeleteProductService {
-    async execute(id: any) {
-        console.log(id);
+import { getCustomRepository } from "typeorm";
+import { ProductRepository } from "../../repository/ProductRepository";
 
-        return {
-            message: "Registro excluido com sucesso",
-        };
+export class DeleteProductService {
+    async execute(id: string) {
+        const productRepository = getCustomRepository(ProductRepository);
+        const product = await productRepository.findOne(id);
+
+        if (!product) {
+            throw new Error("Produto não encontrado");
+        }
+
+        await productRepository.delete(id);
+        return { message: "Registro excluido com sucesso" };
     }
 }

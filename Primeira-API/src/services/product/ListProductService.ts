@@ -1,23 +1,13 @@
+import { getCustomRepository } from "typeorm";
+import { ProductRepository } from "../../repository/ProductRepository";
+
 export class ListProductService {
     async execute() {
-        const products = [
-            {
-                id: 1,
-                name: "Produto 1",
-                EAN: "1234567890123",
-                price: 10.0,
-                description: "Descrição do Produto 1",
-                categoryId: 1,
-            },
-            {
-                id: 2,
-                name: "Produto 2",
-                EAN: "1234567890124",
-                price: 20.0,
-                description: "Descrição do Produto 2",
-                categoryId: 2,
-            },
-        ];
+        const productRepository = getCustomRepository(ProductRepository);
+        // Usar 'relations' para trazer os dados da categoria junto (JOIN)
+        const products = await productRepository.find({
+            relations: ["category"]
+        });
         return products;
     }
 }
