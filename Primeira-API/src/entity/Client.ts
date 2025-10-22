@@ -1,20 +1,38 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Product } from "./Product"; 
+import { Sale } from "./Sale";
 
-@Entity("categories")
-class Category {
+@Entity("clients")
+class Client {
     @PrimaryColumn()
     readonly id!: string;
 
-    @Column({ unique: true }) 
+    @Column()
     name: string;
 
-    @Column()
-    description: string;
+    @Column({ unique: true })
+    cpf: string;
 
-    @OneToMany(() => Product, product => product.category)
-    products: Product[];
+    @Column()
+    email: string;
+
+    @Column()
+    address: string;
+
+    @Column()
+    zipcode: string;
+
+    @Column()
+    number: number;
+
+    @Column()
+    city: string;
+
+    @Column()
+    state: string;
+
+    @OneToMany(() => Sale, sale => sale.client)
+    sales: Sale[];
 
     @CreateDateColumn()
     created_at!: Date;
@@ -29,4 +47,4 @@ class Category {
     }
 }
 
-export { Category };
+export { Client };
