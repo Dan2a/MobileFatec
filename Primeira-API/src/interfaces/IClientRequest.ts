@@ -4,7 +4,7 @@ export interface IClientRequest {
     cpf: string;
     email: string;
     address: string;
-    zipcode: number;
+    zipcode: string;
     number: number;
     city: string;
     state: string;
