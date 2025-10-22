@@ -4,15 +4,12 @@ import { CreateProductService } from "../../services/product/CreateProductServic
 class CreateProductController {
     async handle(request: Request, response: Response) {
         const createProductService = new CreateProductService();
-
         const { name, EAN, price, description, categoryId } = request.body;
 
-        const product = { name, EAN, price, description, categoryId };
+        // Garantir que categoryId seja string
+        const product = await createProductService.execute({ name, EAN, price, description, categoryId: String(categoryId) });
 
-        const resp = await createProductService.execute(product);
-
-        response.json({ message: "Registro incluido com Sucesso", data: resp });
+        return response.status(201).json(product);
     }
 }
-
 export { CreateProductController };
