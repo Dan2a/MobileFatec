@@ -90,36 +90,6 @@
     * O servidor estará rodando em `http://localhost:3000`.
 
 ## Estrutura do Projeto
-├── src/│
-        ├── controllers/ # Camada de controle (recebe requisições, chama serviços) │
-            ├── authenticated/ 
-            ├── category/ 
-            ├── client/ 
-            ├── product/ 
-            ├── sale/ 
-            └── user/ 
-        ├── database/ # Configuração de conexão e migrations 
-            └── migration/ 
-        ├── entity/ # Definição das entidades (mapeamento tabelas <-> classes)
-        ├── interfaces/ # Definição de tipos/interfaces para DTOs 
-        ├── middlewares/ # Middlewares (ex: autenticação) 
-        ├── repository/ # Camada de acesso a dados (interação direta com TypeORM) 
-        └── services/ # Camada de serviço (lógica de negócio) 
-            ├── authenticated/  
-            ├── category/ 
-            ├── client/ 
-            ├── product/ 
-            ├── sale/ 
-            └── user/ 
-        ├── routes.ts # Definição de todas as rotas da API 
-        └── server.ts # Ponto de entrada da aplicação (criação do servidor Express)
-├── ormconfig.json # Configuração do TypeORM 
-├── package.json # Dependências e scripts do projeto 
-├── tsconfig.json # Configuração do TypeScript 
-└── yarn.lock # Lockfile do Yarn
-
-
-## Estrutura do Projeto
 
 * **`Primeira-API/`**
     * **`src/`**
@@ -161,6 +131,59 @@ Consulte o arquivo `src/routes.ts` para a lista completa de endpoints. A maioria
 1.  **Criar Usuário:** `POST /users` (Body: `{ "name": "...", "email": "...", "password": "..." }`)
 2.  **Login:** `POST /login` (Body: `{ "email": "...", "password": "..." }`) -> Retorna `{ "token": "seu_jwt_token" }`
 3.  **Listar Usuários (Autenticado):** `GET /users` (Header: `Authorization: Bearer seu_jwt_token`)
+
+---
+
+### Autenticação
+
+| Método | Rota         | Descrição                                 | Autenticação Requerida |
+| :----- | :----------- | :---------------------------------------- | :--------------------- |
+| `POST` | `/login`     | Autentica um usuário e retorna um token JWT | Não                    |
+
+### Usuários (Users)
+
+| Método   | Rota         | Descrição                  | Autenticação Requerida |
+| :------- | :----------- | :------------------------- | :--------------------- |
+| `POST`   | `/users`     | Cria um novo usuário       | Não                    |
+| `GET`    | `/users`     | Lista todos os usuários    | Sim                    |
+| `PUT`    | `/users/:id` | Atualiza um usuário por ID | Sim                    |
+| `DELETE` | `/users/:id` | Deleta um usuário por ID   | Sim                    |
+
+### Clientes (Clients)
+
+| Método   | Rota          | Descrição                   | Autenticação Requerida |
+| :------- | :------------ | :-------------------------- | :--------------------- |
+| `POST`   | `/clients`    | Cria um novo cliente        | Sim                    |
+| `GET`    | `/clients`    | Lista todos os clientes     | Sim                    |
+| `PUT`    | `/clients/:id`| Atualiza um cliente por ID  | Sim                    |
+| `DELETE` | `/clients/:id`| Deleta um cliente por ID    | Sim                    |
+
+### Produtos (Products)
+
+| Método   | Rota           | Descrição                   | Autenticação Requerida |
+| :------- | :------------- | :-------------------------- | :--------------------- |
+| `POST`   | `/products`    | Cria um novo produto        | Sim                    |
+| `GET`    | `/products`    | Lista todos os produtos     | Sim                    |
+| `PUT`    | `/products/:id`| Atualiza um produto por ID  | Sim                    |
+| `DELETE` | `/products/:id`| Deleta um produto por ID    | Sim                    |
+
+### Categorias (Categories)
+
+| Método   | Rota            | Descrição                     | Autenticação Requerida |
+| :------- | :-------------- | :---------------------------- | :--------------------- |
+| `POST`   | `/categories`   | Cria uma nova categoria       | Sim                    |
+| `GET`    | `/categories`   | Lista todas as categorias     | Sim                    |
+| `PUT`    | `/categories/:id`| Atualiza uma categoria por ID | Sim                    |
+| `DELETE` | `/categories/:id`| Deleta uma categoria por ID   | Sim                    |
+
+### Vendas (Sales)
+
+| Método   | Rota        | Descrição                  | Autenticação Requerida |
+| :------- | :---------- | :------------------------- | :--------------------- |
+| `POST`   | `/sales`    | Cria uma nova venda        | Sim                    |
+| `GET`    | `/sales`    | Lista todas as vendas      | Sim                    |
+| `PUT`    | `/sales/:id`| Atualiza uma venda por ID  | Sim                    |
+| `DELETE` | `/sales/:id`| Deleta uma venda por ID    | Sim                    |
 
 ## Testando
 
