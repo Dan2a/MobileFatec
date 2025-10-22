@@ -1,0 +1,3 @@
+yarn typeorm migration:generate -n "user"
+
+migration:run
