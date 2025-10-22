@@ -188,3 +188,11 @@ Consulte o arquivo `src/routes.ts` para a lista completa de endpoints. A maioria
 ## Testando
 
 Use ferramentas como Postman, Insomnia ou `curl` para interagir com a API. Lembre-se de obter um token via `/login` e incluí-lo nas requisições às rotas protegidas.
+
+---
+
+## Autor
+
+* **Daniel Almeida Andrade**
+    * [GitHub](https://github.com/Dan2a)
+    * [LinkedIn](https://www.linkedin.com/in/d2aa1303)
