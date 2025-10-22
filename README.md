@@ -40,7 +40,7 @@
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-seu-repositorio>
+    git clone <https://github.com/Dan2a/MobileFatec>
     cd Primeira-API
     ```
 
@@ -82,15 +82,7 @@
     yarn typeorm migration:run
     ```
 
-6.  **Configure as Variáveis de Ambiente (Recomendado):**
-    * Crie um arquivo `.env` na raiz do projeto (`Primeira-API/`).
-    * Adicione o segredo do JWT (use uma string segura e aleatória):
-        ```env
-        JWT_SECRET=seu_segredo_super_secreto_aqui
-        ```
-    * **Importante:** Ajuste os arquivos `src/services/authenticated/AuthenticateUserService.ts` e `src/middlewares/ensureAuthenticated.ts` para lerem o segredo do `process.env.JWT_SECRET` em vez de usarem um valor fixo. Você precisará instalar o pacote `dotenv` (`yarn add dotenv`) e inicializá-lo no `server.ts`.
-
-7.  **Execute a Aplicação (Modo Desenvolvimento):**
+6.  **Execute a Aplicação (Modo Desenvolvimento):**
     * Este comando iniciará o servidor e o reiniciará automaticamente ao detectar alterações nos arquivos `.ts`.
     ```bash
     yarn dev
@@ -98,6 +90,34 @@
     * O servidor estará rodando em `http://localhost:3000`.
 
 ## Estrutura do Projeto
+├── src/│
+        ├── controllers/ # Camada de controle (recebe requisições, chama serviços) │
+            ├── authenticated/ 
+            ├── category/ 
+            ├── client/ 
+            ├── product/ 
+            ├── sale/ 
+            └── user/ 
+        ├── database/ # Configuração de conexão e migrations 
+            └── migration/ 
+        ├── entity/ # Definição das entidades (mapeamento tabelas <-> classes)
+        ├── interfaces/ # Definição de tipos/interfaces para DTOs 
+        ├── middlewares/ # Middlewares (ex: autenticação) 
+        ├── repository/ # Camada de acesso a dados (interação direta com TypeORM) 
+        └── services/ # Camada de serviço (lógica de negócio) 
+            ├── authenticated/  
+            ├── category/ 
+            ├── client/ 
+            ├── product/ 
+            ├── sale/ 
+            └── user/ 
+        ├── routes.ts # Definição de todas as rotas da API 
+        └── server.ts # Ponto de entrada da aplicação (criação do servidor Express)
+├── ormconfig.json # Configuração do TypeORM 
+├── package.json # Dependências e scripts do projeto 
+├── tsconfig.json # Configuração do TypeScript 
+└── yarn.lock # Lockfile do Yarn
+
 
 ## Estrutura do Projeto
 
